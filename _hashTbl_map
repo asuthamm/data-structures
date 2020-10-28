@@ -1,0 +1,60 @@
+// https://www.youtube.com/watch?v=QuFPIZj55hU&t=269s
+// using map()
+const hash = (keyStr, size) => {      
+  let hashedKey = 0;
+
+  for (let i in keyStr) {
+    hashedKey += keyStr.charCodeAt(i);
+  }
+  return hashedKey % size;
+};
+ 
+class HashTable {
+  constructor() {
+    this.size = 7;
+    this.buckets = Array(this.size);
+    // for (let i in this.buckets) { // doesn't work, why?
+    for (let i = 0; i < this.buckets.length; i++) {
+      this.buckets[i] = new Map();
+    }
+  }
+
+  insert = (key, value) => {
+    let idx = hash(key, this.size);
+    this.buckets[idx].set(key, value);
+  };
+
+  remove = (key) => {
+    let idx = hash(key, this.size);
+    let deleted = this.buckets[idx].get(key);
+    this.buckets[idx].delete(key);
+    return deleted;
+  }
+
+  display = () => {
+    console.log(this.buckets);
+  }
+
+  search = (key) => {
+    let idx = hash(key, this.size);
+    return this.buckets[idx].get(key);
+  }
+ 
+}
+
+const tbl = new HashTable();
+tbl.insert('alexS', 'dad');
+tbl.insert('hedy', 'mom');
+tbl.insert('dana', 'ate');
+tbl.insert('ashley', 'lek');
+tbl.insert('huey', 'boy');
+tbl.display();
+// console.log(tbl);
+
+// tbl.search('dana');
+// tbl.remove('dana')
+// tbl;
+
+// tbl = HashTable { size: n, buckets: [map{},..] }
+
+ 
