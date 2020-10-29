@@ -1,3 +1,6 @@
+// BINARY SEARCH TREE
+// https://www.youtube.com/watch?v=6JeuJRqKJrI
+
 class Node {
     constructor(value) {
       this.value = value
